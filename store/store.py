@@ -42,7 +42,7 @@ def start_module():
             if option == "1":
                 show_table(store_module_table)
             elif option == "2":
-                add(store_module_table)
+                store_module_table = add(store_module_table)
             elif option == "3":
                 remove(store_module_table)
             elif option == "4":
@@ -81,7 +81,11 @@ def add(table):
         list: Table with a new record
     """
 
-    # your code
+    input_for_new_row = ui.get_inputs(
+        ["ID", "Title", "Manufacturer", "Price", "In-stock"],
+        "Please enter product details"
+    )
+    table.append(input_for_new_row)
 
     return table
 
