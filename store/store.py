@@ -27,8 +27,33 @@ def start_module():
     Returns:
         None
     """
+    store_module_table = data_manager.get_table_from_file("store/games.csv")
 
-    # your code
+    options = [
+        "Show table",
+        "Add item",
+        "Remove item",
+        "Update item"]
+
+    while True:
+        ui.print_menu("- Store manager -", options, "Back to Main menu")
+        option = ui.get_inputs(["Please enter a number: "], "")
+        try:
+            if option == "1":
+                show_table(store_module_table)
+            elif option == "2":
+                add(store_module_table)
+            elif option == "3":
+                remove(store_module_table)
+            elif option == "4":
+                which_id = input("Please enter the ID of the item you wish to update: ")
+                update(store_module_table, which_id)
+            elif option == "0":
+                break
+            else:
+                raise KeyError("There is no such option")
+        except KeyError as err:
+            ui.print_error_message(str(err))
 
 
 def show_table(table):

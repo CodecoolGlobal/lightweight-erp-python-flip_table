@@ -63,7 +63,7 @@ def print_menu(title, list_options, exit_message):
     max_lenght = max([len(menu_option) for menu_option in list_options])
     main_menu_decor_lenght = int((max_lenght - len(title)) / 2)
     print("")
-    print("-"*main_menu_decor_lenght, title, "-"*main_menu_decor_lenght,"\n")
+    print("-"*(main_menu_decor_lenght + 1), title, "-"*(main_menu_decor_lenght + 1),"\n")
     for number, option in enumerate(list_options, 1):
         print(f"({number}) {option}")
     print("")
@@ -114,5 +114,5 @@ def print_error_message(message):
     Returns:
         None: This function doesn't return anything it only prints to console.
     """
-
+    print(message)
     # your code
