@@ -39,17 +39,18 @@ def start_module():
         ui.print_menu("- Store manager -", options, "Back to Main menu")
         option = ui.get_inputs(["Please enter a number: "], "")
         try:
-            if option == "1":
-                show_table(store_module_table)
-            elif option == "2":
-                store_module_table = add(store_module_table)
-            elif option == "3":
+            if option == "1":           #Print the table
+                show_table(store_module_table) 
+            elif option == "2":         #Adds a new item to the table, updates the file
+                store_module_table = add(store_module_table) 
+                data_manager.write_table_to_file("store/games.csv", store_module_table)
+            elif option == "3":         #Removes from the table, updates the file
                 id_to_remove = ui.get_inputs(
                     ["Please enter the ID of the title you wish to remove: "], ""
                 )
                 store_module_table = remove(store_module_table, id_to_remove)
+                data_manager.write_table_to_file("store/games.csv", store_module_table)
             elif option == "4":
-                which_id = input("Please enter the ID of the item you wish to update: ")
                 update(store_module_table, which_id)
             elif option == "0":
                 break
