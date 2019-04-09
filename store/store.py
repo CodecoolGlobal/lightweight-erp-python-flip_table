@@ -44,7 +44,10 @@ def start_module():
             elif option == "2":
                 store_module_table = add(store_module_table)
             elif option == "3":
-                remove(store_module_table)
+                id_to_remove = ui.get_inputs(
+                    ["Please enter the ID of the title you wish to remove: "], ""
+                )
+                store_module_table = remove(store_module_table, id_to_remove)
             elif option == "4":
                 which_id = input("Please enter the ID of the item you wish to update: ")
                 update(store_module_table, which_id)
@@ -102,7 +105,9 @@ def remove(table, id_):
         list: Table without specified record.
     """
 
-    # your code
+    for game in table:
+        if game[0] == id_:
+            table.remove(game)
 
     return table
 
