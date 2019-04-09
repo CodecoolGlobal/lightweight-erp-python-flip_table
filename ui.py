@@ -60,7 +60,14 @@ def print_menu(title, list_options, exit_message):
     Returns:
         None: This function doesn't return anything it only prints to console.
     """
-
+    max_lenght = max([len(menu_option) for menu_option in list_options])
+    main_menu_decor_lenght = int((max_lenght - len(title)) / 2)
+    print("")
+    print("-"*main_menu_decor_lenght, title, "-"*main_menu_decor_lenght,"\n")
+    for number, option in enumerate(list_options):
+        print(f"({number}) {option}")
+    print("(0)",exit_message,"\n")
+    
     # your code
 
 
@@ -83,9 +90,14 @@ def get_inputs(list_labels, title):
         list: List of data given by the user. Sample return:
             [<user_input_1>, <user_input_2>, <user_input_3>]
     """
+
     inputs = []
 
-    # your code
+    label = input(list_labels[0])
+    titles = input(title)
+
+    inputs.append(label)
+    inputs.append(titles)
 
     return inputs
 
