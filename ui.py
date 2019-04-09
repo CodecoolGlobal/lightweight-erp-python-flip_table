@@ -23,6 +23,12 @@ def print_table(table, title_list):
     """
 
     # your goes code
+    
+    max_length_of_titles = row_max_length(get_table_from_file('erp_tst.txt'))
+    for table_row in table:
+        for i in range(len(table[0])):
+            print(table_row[i].center(max_length_of_titles[i]+2,' '),end="|")
+        print("\n")  
 
 
 def print_result(result, label):
