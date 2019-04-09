@@ -66,7 +66,7 @@ def show_table(table):
     Returns:
         None
     """
-
+    ui.print_table(table, "")
     # your code
 
 
