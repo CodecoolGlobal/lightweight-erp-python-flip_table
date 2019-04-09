@@ -64,8 +64,9 @@ def print_menu(title, list_options, exit_message):
     main_menu_decor_lenght = int((max_lenght - len(title)) / 2)
     print("")
     print("-"*main_menu_decor_lenght, title, "-"*main_menu_decor_lenght,"\n")
-    for number, option in enumerate(list_options):
+    for number, option in enumerate(list_options, 1):
         print(f"({number}) {option}")
+    print("")
     print("(0)",exit_message,"\n")
     
     # your code
