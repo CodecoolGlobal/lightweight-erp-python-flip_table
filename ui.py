@@ -94,11 +94,12 @@ def get_inputs(list_labels, title):
 
     inputs = []
 
-    label = input(list_labels[0])
-    titles = input(title)
-
-    inputs.append(label)
-    inputs.append(titles)
+    if title == "":
+        return input(list_labels[0])
+    else:
+        print(title)
+        for label in list_labels:
+            inputs.append(input(label+": "))
 
     return inputs
 
