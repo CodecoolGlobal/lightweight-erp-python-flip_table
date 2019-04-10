@@ -53,8 +53,15 @@ def print_result(result, label):
         print("|",label[0].center(max_length_key," "),"|",label[1].center(max_length_value," "),"|")
         for i in result.items():
             print("|",str(i[0]).center(max_length_key," "),'|',str(i[1]).center(max_length_value," "),"|")
+
     elif type(result) == int or type(result) == float:
         print(label, result)
+    
+    elif type(result) == list:
+        print("\n",label)
+        for names in result:
+            print("\n", "-" + names)
+
 
 
 def print_menu(title, list_options, exit_message):
