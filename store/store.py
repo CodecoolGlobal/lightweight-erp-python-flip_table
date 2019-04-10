@@ -38,24 +38,36 @@ def start_module():
     while True:
         ui.print_menu("- Store manager -", options, "Back to Main menu")
         option = ui.get_inputs(["Please enter a number: "], "")
+
         try:
             if option == "1":           #Print the table
                 show_table(store_module_table) 
+
             elif option == "2":         #Adds a new item to the table, updates the file
                 store_module_table = add(store_module_table) 
                 data_manager.write_table_to_file("store/games.csv", store_module_table)
+
             elif option == "3":         #Removes from the table, updates the file
                 id_to_remove = ui.get_inputs(
                     ["Please enter the ID of the title you wish to remove: "], ""
                 )
                 store_module_table = remove(store_module_table, id_to_remove)
                 data_manager.write_table_to_file("store/games.csv", store_module_table)
+
             elif option == "4":
+                which_id = ui.get_inputs(
+                    ["Please enter the ID of the title you wish to update: "],
+                    ""
+                )
                 update(store_module_table, which_id)
+                data_manager.write_table_to_file("store/games.csv", store_module_table)
+
             elif option == "0":
                 break
+
             else:
                 raise KeyError("There is no such option")
+
         except KeyError as err:
             ui.print_error_message(str(err))
 
@@ -106,8 +118,10 @@ def remove(table, id_):
         list: Table without specified record.
     """
 
+    ID = 0
+
     for game in table:
-        if game[0] == id_:
+        if game[ID] == id_:
             table.remove(game)
 
     return table
@@ -125,7 +139,23 @@ def update(table, id_):
         list: table with updated record
     """
 
-    # your code
+    new_data = ui.get_inputs(
+        ["Title", "Manufacturer", "Price", "In-stock"],
+        "Please enter the new data to update"
+    )
+    TITLE = 0
+    MANUFACTURER = 1
+    PRICE = 2
+    IN_STOCK = 3
+
+    ID = 0
+
+    for game in table:
+        if game[ID] == id_:
+            for label in range(len(new_data)):
+                game[label + 1] = new_data[label]
+
+
 
     return table
 
