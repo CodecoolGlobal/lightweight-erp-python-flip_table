@@ -73,7 +73,7 @@ def start_module():
                     ""
                 )
                 average_stock_by_manufacturer = get_average_by_manufacturer(store_module_table, which_manuf)
-
+                ui.print_result(average_stock_by_manufacturer,"The avarege stock by the manufacturer is ")
             elif option == "0":
                 break
 
@@ -94,7 +94,7 @@ def show_table(table):
     Returns:
         None
     """
-    ui.print_table(table, ['ID','TITLE','MANUFACTURER','PRICE','IN-STOCK'])
+    ui.print_table(table, "")
     # your code
 
 

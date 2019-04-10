@@ -45,8 +45,11 @@ def print_result(result, label):
     """
 
     # your code
-    for i in result.items():
-        print(i[0],'\t',i[1])
+    if type(result) == dict:
+        for i in result.items():
+            print(i[0],'\t',i[1])
+    elif type(result) == int or type(result) == float:
+        print(label, result)
 
 
 def print_menu(title, list_options, exit_message):
