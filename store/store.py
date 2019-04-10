@@ -66,7 +66,8 @@ def start_module():
 
             elif option == "5":         #Counts how many games are in the list by manufacturer
                 count_by_manufacturer = get_counts_by_manufacturers(store_module_table)
-                ui.print_result(count_by_manufacturer,['MANUFACTURES','GAMES'])
+                ui.print_result(count_by_manufacturer, ["MANUFACTURER", "GAMES"])
+                
             elif option == "6":         #Counts the average stock by manufacturer
                 which_manuf = ui.get_inputs(
                     ["Please enter which manufacturer: "],
@@ -94,8 +95,7 @@ def show_table(table):
     Returns:
         None
     """
-    ui.print_table(table, "")
-    # your code
+    ui.print_table(table, ["ID", "TITLE", "MANUFACTURER", "PRICE", "IN-STOCK"])
 
 
 def add(table):
