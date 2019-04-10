@@ -23,6 +23,7 @@ def print_table(table, title_list):
     """
 
     # your goes code
+
     
     table.insert(0, title_list)
     max_length_of_titles = row_max_length(table)
@@ -30,6 +31,7 @@ def print_table(table, title_list):
         for i in range(len(table[0])):
             print(table_row[i].center(max_length_of_titles[i]+2,' '),end="|")
         print("\n")  
+    del table[0]
 
 
 def print_result(result, label):
