@@ -48,8 +48,11 @@ def print_result(result, label):
 
     # your code
     if type(result) == dict:
+        max_length_value = max([max([len(value) for value in str(result.values())]),len(label[1])])
+        max_length_key = max([len(key) for key in result.keys()])
+        print("|",label[0].center(max_length_key," "),"|",label[1].center(max_length_value," "),"|")
         for i in result.items():
-            print(i[0],'\t',i[1])
+            print("|",str(i[0]).center(max_length_key," "),'|',str(i[1]).center(max_length_value," "),"|")
     elif type(result) == int or type(result) == float:
         print(label, result)
 

@@ -46,10 +46,3 @@ def generate_random(table):
 
     return generated
 
-#Counting rows max characters for dynamic table printing
-
-def row_max_length(table):
-    max_world_len = []
-    for title in range(len(table[0])):
-        max_world_len.append(max([len(i[title]) for i in table]))
-    return max_world_len
