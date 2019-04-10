@@ -33,7 +33,8 @@ def start_module():
         "Show table",
         "Add item",
         "Remove item",
-        "Update item"]
+        "Update item",
+        "Games per manufacturer"]
 
     while True:
         ui.print_menu("- Store manager -", options, "Back to Main menu")
@@ -61,6 +62,10 @@ def start_module():
                 )
                 update(store_module_table, which_id)
                 data_manager.write_table_to_file("store/games.csv", store_module_table)
+
+            elif option == "5":
+                count_by_manufacturer = get_counts_by_manufacturers(store_module_table)
+                
 
             elif option == "0":
                 break
@@ -174,7 +179,16 @@ def get_counts_by_manufacturers(table):
          dict: A dictionary with this structure: { [manufacturer] : [count] }
     """
 
-    # your code
+    count_by_manufacturer = {}
+    MANUFACTURER = 2
+    for game in table:
+        if game[MANUFACTURER] not in count_by_manufacturer.keys():
+            count_by_manufacturer[game[MANUFACTURER]] = 1
+        else:
+            count_by_manufacturer[game[MANUFACTURER]] += 1
+
+    return count_by_manufacturer
+
 
 
 def get_average_by_manufacturer(table, manufacturer):
