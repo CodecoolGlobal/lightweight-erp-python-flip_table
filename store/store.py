@@ -34,7 +34,8 @@ def start_module():
         "Add item",
         "Remove item",
         "Update item",
-        "Games per manufacturer"]
+        "Games per manufacturer",
+        "Average stock by manufacturer"]
 
     while True:
         ui.print_menu("- Store manager -", options, "Back to Main menu")
@@ -66,6 +67,13 @@ def start_module():
             elif option == "5":
                 count_by_manufacturer = get_counts_by_manufacturers(store_module_table)
                 
+            elif option == "6":
+                which_manuf = ui.get_inputs(
+                    ["Please enter which manufacturer: "],
+                    ""
+                )
+                average_stock_by_manufacturer = get_average_by_manufacturer(store_module_table, which_manuf)
+                print(average_stock_by_manufacturer)
 
             elif option == "0":
                 break
@@ -202,5 +210,16 @@ def get_average_by_manufacturer(table, manufacturer):
     Returns:
          number
     """
+    MANUFACTURER = 2
+    STOCK = 4
+    games_by_manuf = 0
+    stock_by_manuf = 0
 
+    for game in table:
+        if game[MANUFACTURER] == manufacturer:
+            games_by_manuf += 1
+            stock_by_manuf += int(game[STOCK])
+
+    return stock_by_manuf / games_by_manuf
+    
     # your code
