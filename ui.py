@@ -24,7 +24,7 @@ def print_table(table, title_list):
 
     # your goes code
 
-    
+    print("\x1b[2J\x1b[H",end="")
     table.insert(0, title_list)
     max_length_of_titles = row_max_length(table)
     for table_row in table:
@@ -32,6 +32,22 @@ def print_table(table, title_list):
             print(table_row[i].center(max_length_of_titles[i]+2,' '),end="|")
         print("\n")  
     del table[0]
+    print("")
+
+    while True:
+        go_back_input = get_inputs(
+        ["Enter '0' to go back: "],
+        ""
+        )
+        try:
+            if go_back_input == "0":
+                break
+            else:
+                raise KeyError
+        except KeyError as err:
+            print_error_message(str(err))
+            continue
+        
 
 
 def print_result(result, label):
@@ -47,7 +63,10 @@ def print_result(result, label):
     """
 
     # your code
+    
     if type(result) == dict:
+        print("\x1b[2J\x1b[H",end="")
+        print("")
         max_length_value = max([max([len(value) for value in str(result.values())]),len(label[1])])
         max_length_key = max([len(key) for key in result.keys()])
         print("|",label[0].center(max_length_key," "),"|",label[1].center(max_length_value," "),"|")
@@ -55,12 +74,28 @@ def print_result(result, label):
             print("|",str(i[0]).center(max_length_key," "),'|',str(i[1]).center(max_length_value," "),"|")
 
     elif type(result) == int or type(result) == float:
+        print("")
         print(label, result)
     
     elif type(result) == list:
-        print("\n",label)
+        print("\x1b[2J\x1b[H",end="")
+        print("\n", label, "\n")
         for names in result:
             print("\n", "-" + names)
+
+    while True:
+        print("")
+        go_back_input = get_inputs(
+            ["Please enter '0' to go back: "],
+            ""
+        )
+        try:
+            if go_back_input == "0":
+                break
+            else:
+                raise KeyError
+        except KeyError as err:
+            print_error_message(err)
 
 
 
@@ -84,6 +119,8 @@ def print_menu(title, list_options, exit_message):
     Returns:
         None: This function doesn't return anything it only prints to console.
     """
+    
+    print("\x1b[2J\x1b[H",end="")
     max_lenght = max([len(menu_option) for menu_option in list_options])
     main_menu_decor_lenght = int((max_lenght - len(title)) / 2)
     print("")

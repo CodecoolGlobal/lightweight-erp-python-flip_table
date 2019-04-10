@@ -26,7 +26,7 @@ def start_module():
         None
     """
 
-    hr_module_table = data_manager.get_table_from_file("hr/persons.csv")
+    table = data_manager.get_table_from_file("hr/persons.csv")
 
     options = [
         "Show table",
@@ -46,34 +46,34 @@ def start_module():
 
         try:
             if option == "1":           #Print the table
-                show_table(hr_module_table)
+                show_table(table)
 
             elif option == "2":
-                hr_module_table = add(hr_module_table)
-                data_manager.write_table_to_file("hr/persons.csv", hr_module_table)
+                table = add(table)
+                data_manager.write_table_to_file("hr/persons.csv", table)
 
             elif option == "3":
                 id_to_remove = ui.get_inputs(
                     ["Please enter the ID of the person you wish to remove: "],
                     ""
                     )
-                hr_module_table = remove(hr_module_table, id_to_remove)
-                data_manager.write_table_to_file("hr/persons.csv", hr_module_table)
+                table = remove(table, id_to_remove)
+                data_manager.write_table_to_file("hr/persons.csv", table)
 
             elif option == "4":
                 which_id = ui.get_inputs(
                     ["Please enter the ID of the person you wish to update: "],
                     ""
                 )
-                update(hr_module_table, which_id)
-                data_manager.write_table_to_file("hr/persons.csv", hr_module_table)
+                update(table, which_id)
+                data_manager.write_table_to_file("hr/persons.csv", table)
 
             elif option == "5":
-                oldest_people = get_oldest_person(hr_module_table)
+                oldest_people = get_oldest_person(table)
                 ui.print_result(oldest_people, "The oldest people are: ")
 
             elif option == "6":
-                closes_person_avg = get_persons_closest_to_average(hr_module_table)
+                closes_person_avg = get_persons_closest_to_average(table)
                 ui.print_result(closes_person_avg, "The people born closest to the average are: ")
 
             elif option == "0":

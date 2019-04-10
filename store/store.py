@@ -27,7 +27,7 @@ def start_module():
     Returns:
         None
     """
-    store_module_table = data_manager.get_table_from_file("store/games.csv")
+    table = data_manager.get_table_from_file("store/games.csv")
 
     options = [
         "Show table",
@@ -43,29 +43,29 @@ def start_module():
 
         try:
             if option == "1":           #Print the table
-                show_table(store_module_table) 
+                show_table(table) 
 
             elif option == "2":         #Adds a new item to the table, updates the file
-                store_module_table = add(store_module_table) 
-                data_manager.write_table_to_file("store/games.csv", store_module_table)
+                table = add(table) 
+                data_manager.write_table_to_file("store/games.csv", table)
 
             elif option == "3":         #Removes from the table, updates the file
                 id_to_remove = ui.get_inputs(
                     ["Please enter the ID of the title you wish to remove: "], ""
                 )
-                store_module_table = remove(store_module_table, id_to_remove)
-                data_manager.write_table_to_file("store/games.csv", store_module_table)
+                table = remove(table, id_to_remove)
+                data_manager.write_table_to_file("store/games.csv", table)
 
             elif option == "4":         #Updates an entry by ID
                 which_id = ui.get_inputs(
                     ["Please enter the ID of the title you wish to update: "],
                     ""
                 )
-                update(store_module_table, which_id)
-                data_manager.write_table_to_file("store/games.csv", store_module_table)
+                update(table, which_id)
+                data_manager.write_table_to_file("store/games.csv", table)
 
             elif option == "5":         #Counts how many games are in the list by manufacturer
-                count_by_manufacturer = get_counts_by_manufacturers(store_module_table)
+                count_by_manufacturer = get_counts_by_manufacturers(table)
                 ui.print_result(count_by_manufacturer, ["MANUFACTURER", "GAMES"])
                 
             elif option == "6":         #Counts the average stock by manufacturer
@@ -73,7 +73,7 @@ def start_module():
                     ["Please enter which manufacturer: "],
                     ""
                 )
-                average_stock_by_manufacturer = get_average_by_manufacturer(store_module_table, which_manuf)
+                average_stock_by_manufacturer = get_average_by_manufacturer(table, which_manuf)
                 ui.print_result(average_stock_by_manufacturer,"The avarege stock by the manufacturer is ")
             elif option == "0":
                 break
