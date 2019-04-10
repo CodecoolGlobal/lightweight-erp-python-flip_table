@@ -56,7 +56,7 @@ def start_module():
                 store_module_table = remove(store_module_table, id_to_remove)
                 data_manager.write_table_to_file("store/games.csv", store_module_table)
 
-            elif option == "4":
+            elif option == "4":         #Updates an entry by ID
                 which_id = ui.get_inputs(
                     ["Please enter the ID of the title you wish to update: "],
                     ""
@@ -64,16 +64,15 @@ def start_module():
                 update(store_module_table, which_id)
                 data_manager.write_table_to_file("store/games.csv", store_module_table)
 
-            elif option == "5":
+            elif option == "5":         #Counts how many games are in the list by manufacturer
                 count_by_manufacturer = get_counts_by_manufacturers(store_module_table)
                 
-            elif option == "6":
+            elif option == "6":         #Counts the average stock by manufacturer
                 which_manuf = ui.get_inputs(
                     ["Please enter which manufacturer: "],
                     ""
                 )
                 average_stock_by_manufacturer = get_average_by_manufacturer(store_module_table, which_manuf)
-                print(average_stock_by_manufacturer)
 
             elif option == "0":
                 break
@@ -111,9 +110,10 @@ def add(table):
     """
 
     input_for_new_row = ui.get_inputs(
-        ["ID", "Title", "Manufacturer", "Price", "In-stock"],
+        ["Title", "Manufacturer", "Price", "In-stock"],
         "Please enter product details"
     )
+    input_for_new_row.insert(0, common.generate_random(table))
     table.append(input_for_new_row)
 
     return table

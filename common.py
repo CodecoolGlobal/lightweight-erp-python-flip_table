@@ -32,14 +32,17 @@ def generate_random(table):
     Returns:
         string: Random and unique string
     """
-
-    generated = ''
-
-    generated = generated + random_letter()
-    generated = generated + random_letter().upper()
-    generated = generated + random_two_number()
-    generated = generated + random_letter().upper()
-    generated = generated + random_letter()
+    
+    while True:
+        generated = ''
+        generated += random_letter()
+        generated += random_letter().upper()
+        generated += random_two_number()
+        generated += random_letter().upper()
+        generated += random_letter()
+        generated += random_spec_char()
+        if generated not in [table_row[0] for table_row in table]:
+            break
 
     return generated
 
