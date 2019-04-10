@@ -24,8 +24,7 @@ def print_table(table, title_list):
 
     # your goes code
     
-    from common import row_max_length
-
+    table.insert(0, title_list)
     max_length_of_titles = row_max_length(table)
     for table_row in table:
         for i in range(len(table[0])):
@@ -46,6 +45,8 @@ def print_result(result, label):
     """
 
     # your code
+    for i in result.items():
+        print(i[0],'\t',i[1])
 
 
 def print_menu(title, list_options, exit_message):
@@ -124,3 +125,11 @@ def print_error_message(message):
     """
     print(message)
     # your code
+
+#Counting rows max characters for dynamic table printing
+
+def row_max_length(table):
+    max_world_len = []
+    for title in range(len(table[0])):
+        max_world_len.append(max([len(i[title]) for i in table]))
+    return max_world_len
