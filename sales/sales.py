@@ -77,9 +77,7 @@ def start_module():
                 ui.print_result(lowest_price, "The lowest price game ID's are: ")
 
             elif option == "6":
-                id_of_games_dates = get_items_sold_between(table)
-                inputs = ui.get_inputs("Starting day: ", "Starting month: ", "Starting year: ", "Ending day: ", "Ending month: ", "Ending year: ")
-                ui.print_result(id_of_games_dates, "The ID's of the games sold between two given dates are: ")
+                #dates = ui.get_inputs(["Month from", "Day from", "Year from", "Month to", ])
             
             elif option == "0":
                 break
@@ -209,7 +207,7 @@ def get_lowest_price_item_id(table):
         if game[PRICE] == lowest_id_price:
             lowest_price_id.append(game[ID])
 
-    return lowest_price_id
+    return lowest_price_id[0]
 
 
 def get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to):
@@ -228,12 +226,7 @@ def get_items_sold_between(table, month_from, day_from, year_from, month_to, day
     Returns:
         list: list of lists (the filtered table)
     """
-    ID = 0
-    TITLE = 1
-    PRICE = 2
-    MONTH = 3
-    DAY = 4
-    YEAR = 5
+
 
     
 

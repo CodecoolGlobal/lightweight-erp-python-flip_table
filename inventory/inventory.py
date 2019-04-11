@@ -36,7 +36,7 @@ def start_module():
         "Remove item",
         "Update item",
         "Available items",
-        "Special function 2"
+        "Average durability by manufacturer"
     ]
 
     while True:
@@ -180,7 +180,7 @@ def get_available_items(table):
 
     for item in table:
         if int(item[P_YEAR]) + int(item[DURABILITY]) >= 2019:
-            not_exceeded_items.append(item[NAME])
+            not_exceeded_items.append(item)
 
     return not_exceeded_items
 
