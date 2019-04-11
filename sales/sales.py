@@ -74,11 +74,18 @@ def start_module():
 
             elif option == "5":
                 lowest_price = get_lowest_price_item_id(table)
-                ui.print_result(lowest_price, "The lowest price game ID's are: ")
+                ui.print_result(lowest_price, "The lowest price games ID is: ")
 
             elif option == "6":
-                #dates = ui.get_inputs(["Month from", "Day from", "Year from", "Month to", ])
-            
+                dates = ui.get_inputs(["Month from", "Day from", "Year from", "Month to", "Day to", "Year to"])
+                month_from = dates[0]
+                day_from = dates[1]
+                year_from = dates[2]
+                month_to = dates[3]
+                day_to = dates[4]
+                year_to = dates[5]
+                ui.print_result(get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to), "")
+                
             elif option == "0":
                 break
             
@@ -198,16 +205,28 @@ def get_lowest_price_item_id(table):
          string: id
     """
 
-    lowest_price_id = []
+    lowest_price_ids = []
     PRICE = 2
     ID = 0
-    lowest_id_price = min([price[PRICE] for price in table])
+    lowest_price = min([price[PRICE] for price in table])
 
     for game in table:
-        if game[PRICE] == lowest_id_price:
-            lowest_price_id.append(game[ID])
+        if game[PRICE] == lowest_price:
+            lowest_price_ids.append(game)
+        
+    if len(lowest_price_ids) == 1:
+       return lowest_price_ids[0][0]
 
-    return lowest_price_id[0]
+    else:
+        for _ in range(len(lowest_price_ids)):
+            for index in range(len(lowest_price_ids) - 1):
+                if lowest_price_ids[index] < lowest_price_ids[index + 1]:
+                    placeholder = lowest_price_ids[index]
+                    lowest_price_ids[index] = lowest_price_ids[index + 1]
+                    lowest_price_ids[index + 1] = placeholder
+        return lowest_price_ids[0][0]
+    
+
 
 
 def get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to):
@@ -227,7 +246,8 @@ def get_items_sold_between(table, month_from, day_from, year_from, month_to, day
         list: list of lists (the filtered table)
     """
 
+    MONTH = 3
+    DAY = 4
+    YEAR = 5
 
     
-
-    # your code

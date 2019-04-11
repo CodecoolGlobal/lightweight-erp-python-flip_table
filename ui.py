@@ -83,6 +83,11 @@ def print_result(result, label):
         for names in result:
             print("\n", "-", names)
 
+    elif type(result) == str:
+        print(label)
+        print("")
+        print(result)
+
     while True:
         print("")
         go_back_input = get_inputs(
