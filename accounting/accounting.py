@@ -30,6 +30,57 @@ def start_module():
     """
 
     # you code
+    table = data_manager.get_table_from_file("accounting/items.csv")
+
+    options = [
+        "Show table",
+        "Add item",
+        "Remove item",
+        "Update item",
+        "Place Holder 1",
+        "Place Holder 2"]
+
+    while True:
+        ui.print_menu("- Accounting -", options, "Back to Main menu")
+        option = ui.get_inputs(["Please enter a number: "], "")
+
+        try:
+            if option == "1":           #Print the table
+                show_table(table) 
+
+            elif option == "2":         #Adds a new item to the table, updates the file
+                table = add(table) 
+                data_manager.write_table_to_file("accounting/items.csv", table)
+
+            elif option == "3":         #Removes from the table, updates the file
+                id_to_remove = ui.get_inputs(
+                    ["Please enter the ID of the title you wish to remove: "], ""
+                )
+                table = remove(table, id_to_remove)
+                data_manager.write_table_to_file("accounting/items.csv", table)
+
+            elif option == "4":         #Updates an entry by ID
+                which_id = ui.get_inputs(
+                    ["Please enter the ID of the title you wish to update: "],
+                    ""
+                )
+                update(table, which_id)
+                data_manager.write_table_to_file("accounting/items.csv", table)
+
+            #elif option == "5":         #Checks the highest profit year
+                
+                
+            #elif option == "6":         #Avg per item in year
+                            
+
+            elif option == "0":
+                break
+
+            else:
+                raise KeyError("There is no such option")
+
+        except KeyError as err:
+            ui.print_error_message(str(err))
 
 
 def show_table(table):
@@ -44,7 +95,7 @@ def show_table(table):
     """
 
     # your code
-
+    ui.print_table(table, ["ID", "DAY", "MONTH", "YEAR", "IN-STOCK","AMOUNT"])
 
 def add(table):
     """
@@ -58,6 +109,12 @@ def add(table):
     """
 
     # your code
+    input_for_new_row = ui.get_inputs(
+        ["DAY", "MONTH", "YEAR", "In-stock","AMOUNT"],
+        "Please enter product details"
+    )
+    input_for_new_row.insert(0, common.generate_random(table))
+    table.append(input_for_new_row)
 
     return table
 
@@ -76,6 +133,12 @@ def remove(table, id_):
 
     # your code
 
+    ID = 0
+
+    for item in table:
+        if item[ID] == id_:
+            table.remove(item)
+
     return table
 
 
@@ -92,6 +155,22 @@ def update(table, id_):
     """
 
     # your code
+    new_data = ui.get_inputs(
+        ["DAY", "MONTH", "YEAR", "In-stock","AMOUNT"],
+        "Please enter the new data to update"
+    )
+    DAY = 0
+    MONTH = 1
+    YEAR = 2
+    IN_STOCK = 3
+    AMOUNT = 4
+
+    ID = 0
+
+    for item in table:
+        if item[ID] == id_:
+            for label in range(len(new_data)):
+                item[label + 1] = new_data[label]
 
     return table
 
@@ -111,6 +190,8 @@ def which_year_max(table):
     """
 
     # your code
+
+    
 
 
 def avg_amount(table, year):
