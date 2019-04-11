@@ -81,7 +81,7 @@ def print_result(result, label):
         print("\x1b[2J\x1b[H",end="")
         print("\n", label, "\n")
         for names in result:
-            print("\n", "-" + names)
+            print("\n", "-", names)
 
     while True:
         print("")
