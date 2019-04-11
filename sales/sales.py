@@ -77,14 +77,14 @@ def start_module():
                 ui.print_result(lowest_price, "The lowest price games ID is: ")
 
             elif option == "6":
-                dates = ui.get_inputs(["Month from", "Day from", "Year from", "Month to", "Day to", "Year to"])
+                dates = ui.get_inputs(["Month from", "Day from", "Year from", "Month to", "Day to", "Year to"], "Please enter the dates: ")
                 month_from = dates[0]
                 day_from = dates[1]
                 year_from = dates[2]
                 month_to = dates[3]
                 day_to = dates[4]
                 year_to = dates[5]
-                ui.print_result(get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to), "")
+                ui.print_result(get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to), ["ID", "TITLE", "PRICE", "MONTH", "DAY", "YEAR"])
                 
             elif option == "0":
                 break
@@ -249,5 +249,28 @@ def get_items_sold_between(table, month_from, day_from, year_from, month_to, day
     MONTH = 3
     DAY = 4
     YEAR = 5
+
+    list_of_games = []
+
+    for game in table:
+        if int(game[YEAR]) >= int(year_from) and int(game[YEAR]) <= int(year_to):
+            list_of_games.append(game)
+
+    for game in table:
+        if int(game[MONTH]) < int(month_from) and int(game[YEAR]) == int(year_from):
+            list_of_games.remove(game)
+
+        elif int(game[MONTH]) > int(month_to) and int(game[YEAR]) == int(year_to):
+            list_of_games.remove(game)
+
+        elif int(game[DAY]) < int(day_from) and int(game[MONTH]) == int(month_from):
+            list_of_games.remove(game)
+
+        elif int(game[DAY]) > int(day_to) and int(game[MONTH]) == int(month_to):
+            list_of_games.remove(game)
+        else:
+            pass
+
+    return list_of_games
 
     

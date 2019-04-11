@@ -78,10 +78,13 @@ def print_result(result, label):
         print(label, result)
     
     elif type(result) == list:
-        print("\x1b[2J\x1b[H",end="")
-        print("\n", label, "\n")
-        for names in result:
-            print("\n", "-", names)
+        try:
+            print_table(result, label)
+        except IndexError:
+            print("\x1b[2J\x1b[H",end="")
+            print("\n", label, "\n")
+            for names in result:
+                print("\n", "-", names)
 
     elif type(result) == str:
         print(label)
