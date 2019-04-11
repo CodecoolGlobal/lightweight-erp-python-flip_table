@@ -189,7 +189,7 @@ def get_oldest_person(table):
     oldest_people = []
     YEAR = 2
     NAME = 1
-    oldest_birthyear = min([year for year in table[YEAR]])
+    oldest_birthyear = min([year[YEAR] for year in table])
 
     for person in table:
         if person[YEAR] == oldest_birthyear:
