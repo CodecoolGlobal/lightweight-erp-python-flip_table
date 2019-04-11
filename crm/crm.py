@@ -27,8 +27,53 @@ def start_module():
         None
     """
 
-    # your code
+    table = data_manager.get_table_from_file("crm/customers.csv")
 
+    options = [
+        "Show table",
+        "Add item",
+        "Remove item",
+        "Update item",
+        "Special functon 1",
+        "Special functon 2"
+    ]
+
+    while True:
+        ui.print_menu("- CRM manager -", options, "Back to Main menu")
+        option = ui.get_inputs(["Please enter a number: "], "")
+
+        try:
+            if option == "1":
+                show_table(table)
+
+            elif option == "2":
+                table = add(table)
+                data_manager.write_table_to_file("crm/customer.csv", table)
+
+            elif option == "3":
+                id_to_remove = ui.get_inputs(
+                    ["Please enter the ID of the person you wish to remove: "],
+                    ""
+                )
+                table = remove(table, id_to_remove)
+                data_manager.write_table_to_file("crm/customer.csv", table)
+
+            elif option == "4":
+                which_id = ui.get_inputs(
+                    ["Please enter the ID of the person you wish to update: "],
+                    ""
+                )
+                update(table, which_id)
+                data_manager.write_table_to_file("crm/customers.csv", table)
+            
+            elif option == "0":
+                break
+
+            else:
+                raise KeyError("There is no such option")
+
+        except KeyError as err:
+            ui.print_error_message(str(err))
 
 def show_table(table):
     """
@@ -41,7 +86,10 @@ def show_table(table):
         None
     """
 
-    # your code
+    ui.print_table(
+        table,
+        ["ID", "NAME", "E-MAIL", "SUBSCRIBED"]
+    )
 
 
 def add(table):
@@ -55,7 +103,12 @@ def add(table):
         list: Table with a new record
     """
 
-    # your code
+    input_for_new_row = ui.get_inputs(
+        ["Name", "E-mail", "Subscribed"],
+        "Please enter the persons details"
+    )
+    input_for_new_row.insert(0, common.generate_random(table))
+    table.append(input_for_new_row)
 
     return table
 
@@ -72,7 +125,11 @@ def remove(table, id_):
         list: Table without specified record.
     """
 
-    # your code
+    ID = 0
+
+    for person in table:
+        if person[ID] == id_:
+            table.remove(person)
 
     return table
 
@@ -89,7 +146,21 @@ def update(table, id_):
         list: table with updated record
     """
 
-    # your code
+    new_data = ui.get_inputs(
+        ["NAME", "E-MAIL", "SUBSCRIBED"],
+        "Please enter the new data to update"
+    )
+
+    NAME = 0
+    E_MAIL = 1
+    SUBSCRIBED = 2
+
+    ID = 0
+
+    for person in table:
+        if person[ID] == id_:
+            for label in range(len(new_data)):
+                person[label + 1] = new_data[label]
 
     return table
 
