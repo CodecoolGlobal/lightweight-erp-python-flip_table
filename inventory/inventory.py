@@ -64,7 +64,7 @@ def start_module():
 
             elif option == "4":
                 which_id = ui.get_inputs(
-                    ["Please enter the Id of the item you wish to update"],
+                    ["Please enter the Id of the item you wish to update: "],
                     ""
                 )
                 update(table, which_id)
@@ -154,7 +154,22 @@ def update(table, id_):
         list: table with updated record
     """
 
-    # your code
+    new_data = ui.get_inputs(
+        ["NAME", "MANUFACTURER", "YEAR OF PURCHASE", "DURABILITY"],
+        "Please enter the new data to update: "
+    )
+
+    NAME = 0
+    MANUFACTURER = 1
+    YEAR_OF_PURHCASE = 2
+    DURABILITY = 3
+
+    ID = 0
+
+    for item in table:
+        if item[ID] == id_:
+            for label in range(len(new_data)):
+                item[label + 1] = new_data[label]
 
     return table
 

@@ -73,7 +73,11 @@ def start_module():
                     ["Please enter which manufacturer: "],
                     ""
                 )
-                average_stock_by_manufacturer = get_average_by_manufacturer(table, which_manuf)
+                try:
+                    average_stock_by_manufacturer = get_average_by_manufacturer(table, which_manuf)
+                except ZeroDivisionError:
+                    continue
+
                 ui.print_result(average_stock_by_manufacturer,"The avarege stock by the manufacturer is ")
             elif option == "0":
                 break
@@ -222,4 +226,3 @@ def get_average_by_manufacturer(table, manufacturer):
 
     return stock_by_manuf / games_by_manuf
     
-    # your code

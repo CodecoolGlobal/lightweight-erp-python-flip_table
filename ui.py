@@ -80,6 +80,7 @@ def print_result(result, label):
     elif type(result) == list:
         try:
             print_table(result, label)
+            return None
         except IndexError:
             print("\x1b[2J\x1b[H",end="")
             print("\n", label, "\n")
