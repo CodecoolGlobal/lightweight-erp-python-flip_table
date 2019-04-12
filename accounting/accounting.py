@@ -67,11 +67,15 @@ def start_module():
                 update(table, which_id)
                 data_manager.write_table_to_file("accounting/items.csv", table)
 
-            #elif option == "5":         #Checks the highest profit year
+            elif option == "5":         #Checks the highest profit year
+                which_year_max(table)
                 
-                
-            #elif option == "6":         #Avg per item in year
-                            
+            elif option == "6":         #Avg per item in year
+                which_year = ui.get_inputs(
+                    ["Please enter a year"],
+                    ""
+                )
+                ui.print_result(avg_amount(table, which_year), "The average amount by given year is: ")
 
             elif option == "0":
                 break
@@ -188,11 +192,25 @@ def which_year_max(table):
     Returns:
         number
     """
+    YEAR = 3
+    IN_OR_OUT = 4
+    AMOUNT = 5
 
-    # your code
+    years = set([year[YEAR] for year in table])
 
-    
+    profit_by_year = {}
 
+    for year in years:
+        in_amount = 0
+        out_amount = 0
+        for items in table:
+            if items[IN_OR_OUT] == "in" and items[YEAR] == year:
+                in_amount += int(items[AMOUNT])
+            if items[IN_OR_OUT] == "out" and items[YEAR] == year:
+                out_amount += int(items[AMOUNT])
+        profit_by_year[(in_amount - out_amount)] = year
+        
+    return profit_by_year.get(max(profit_by_year))
 
 def avg_amount(table, year):
     """
@@ -206,4 +224,22 @@ def avg_amount(table, year):
         number
     """
 
-    # your code
+    YEAR = 3
+    IN_OR_OUT = 4
+    AMOUNT = 5
+
+    in_amount = 0
+    out_amount = 0
+
+    items_by_year = 0
+
+    for items in table:
+        if items[IN_OR_OUT] == "in" and items[YEAR] == year:
+            in_amount += int(items[AMOUNT])
+        if items[IN_OR_OUT] == "out" and items[YEAR] == year:
+            out_amount += int(items[AMOUNT])
+        if items[YEAR] == year:
+            items_by_year += 1
+    
+    return (in_amount - out_amount) / items_by_year
+    

@@ -34,8 +34,8 @@ def start_module():
         "Add item",
         "Remove item",
         "Update item",
-        "Special functon 1",
-        "Special functon 2"
+        "ID of the longest name",
+        "Customers subscribed to newsletter"
     ]
 
     while True:
@@ -56,7 +56,7 @@ def start_module():
                     ""
                 )
                 table = remove(table, id_to_remove)
-                data_manager.write_table_to_file("crm/customer.csv", table)
+                data_manager.write_table_to_file("crm/customers.csv", table)
 
             elif option == "4":
                 which_id = ui.get_inputs(
@@ -179,8 +179,6 @@ def get_longest_name_id(table):
             string: id of the longest name (if there are more than one, return
                 the last by alphabetical order of the names)
         """
-
-    # your code
 
 
 # the question: Which customers has subscribed to the newsletter?
