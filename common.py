@@ -46,3 +46,14 @@ def generate_random(table):
 
     return generated
 
+def alph_sorted_names_reversed(a_list):
+
+    NAME = 1
+
+    for _ in range(len(a_list)):
+        for index in range(len(a_list) - 1):
+            if a_list[index][NAME] < a_list[index + 1][NAME]:
+                placeholder = a_list[index]
+                a_list[index] = a_list[index + 1]
+                a_list[index + 1] = placeholder
+    return a_list

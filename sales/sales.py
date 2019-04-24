@@ -206,26 +206,21 @@ def get_lowest_price_item_id(table):
          string: id
     """
 
-    lowest_price_ids = []
+    lowest_price_items_data = []
     PRICE = 2
     ID = 0
+    FIRST_ELEMENT = 0
     lowest_price = min([price[PRICE] for price in table])
 
     for game in table:
         if game[PRICE] == lowest_price:
-            lowest_price_ids.append(game)
+            lowest_price_items_data.append(game)
         
-    if len(lowest_price_ids) == 1:
-       return lowest_price_ids[0][0]
+    if len(lowest_price_items_data) == 1:
+       return lowest_price_items_data[FIRST_ELEMENT][ID]
 
     else:
-        for _ in range(len(lowest_price_ids)):
-            for index in range(len(lowest_price_ids) - 1):
-                if lowest_price_ids[index] < lowest_price_ids[index + 1]:
-                    placeholder = lowest_price_ids[index]
-                    lowest_price_ids[index] = lowest_price_ids[index + 1]
-                    lowest_price_ids[index + 1] = placeholder
-        return lowest_price_ids[0][0]
+        return common.alph_sorted_names_reversed(lowest_price_items_data)[FIRST_ELEMENT][ID]
     
 
 

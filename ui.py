@@ -46,7 +46,7 @@ def print_table(table, title_list):
                 raise KeyError
         except KeyError as err:
             print_error_message(str(err))
-            continue
+
         
 
 

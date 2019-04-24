@@ -65,7 +65,13 @@ def start_module():
                 )
                 update(table, which_id)
                 data_manager.write_table_to_file("crm/customers.csv", table)
+
+            elif option == "5":
+                ui.print_result(get_longest_name_id(table), "\nThe ID of the longest name is: ")
             
+            elif option == "6":
+                ui.print_result(get_subscribed_emails(table), "")
+                #get_subscribed_emails(table)
             elif option == "0":
                 break
 
@@ -164,10 +170,6 @@ def update(table, id_):
 
     return table
 
-
-# special functions:
-# ------------------
-
 def get_longest_name_id(table):
     """
         Question: What is the id of the customer with the longest name?
@@ -180,9 +182,24 @@ def get_longest_name_id(table):
                 the last by alphabetical order of the names)
         """
 
+    FIRST_ELEMENT = 0
+    ID = 0
+    NAME = 1
 
-# the question: Which customers has subscribed to the newsletter?
-# return type: list of strings (where string is like email+separator+name, separator=";")
+    lenght_of_names = [len(row[NAME]) for row in table]
+    max_len = max(lenght_of_names)
+    ppl_data_with_max_len_name = []
+    for index, longest_name in enumerate(lenght_of_names):
+        if longest_name == max_len:
+            ppl_data_with_max_len_name.append(table[index])
+
+    if len(ppl_data_with_max_len_name) == 1:
+        return ppl_data_with_max_len_name[ID]
+
+    else:
+        return common.alph_sorted_names_reversed(ppl_data_with_max_len_name)[FIRST_ELEMENT][ID]
+
+
 def get_subscribed_emails(table):
     """
         Question: Which customers has subscribed to the newsletter?
@@ -194,8 +211,17 @@ def get_subscribed_emails(table):
             list: list of strings (where a string is like "email;name")
         """
 
-    # your code
+    NAME = 1
+    EMAIL = 2
+    SUBSCRIBTION = 3
 
+    subscribed_people = []
+
+    for people in table:
+        if people[SUBSCRIBTION] == "1":
+            subscribed_people.append((people[NAME] + ";" + people[EMAIL]))
+    
+    return subscribed_people
 
 # functions supports data analyser
 # --------------------------------
