@@ -44,6 +44,7 @@ def start_module():
         try:
             if option == "1":           #Print the table
                 show_table(table) 
+                common.go_back_in_menu()
 
             elif option == "2":         #Adds a new item to the table, updates the file
                 table = add(table) 
@@ -67,6 +68,7 @@ def start_module():
             elif option == "5":         #Counts how many games are in the list by manufacturer
                 count_by_manufacturer = get_counts_by_manufacturers(table)
                 ui.print_result(count_by_manufacturer, ["MANUFACTURER", "GAMES"])
+                common.go_back_in_menu()
                 
             elif option == "6":         #Counts the average stock by manufacturer
                 which_manuf = ui.get_inputs(
@@ -79,6 +81,8 @@ def start_module():
                     continue
 
                 ui.print_result(average_stock_by_manufacturer,"The avarege stock by the manufacturer is ")
+                common.go_back_in_menu()
+                
             elif option == "0":
                 break
 

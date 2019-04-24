@@ -50,8 +50,9 @@ def start_module():
         )
 
         try:
-            if option == "1":           #Print the table
+            if option == "1":
                 show_table(table)
+                common.go_back_in_menu()
 
             elif option == "2":
                 table = add(table)
@@ -76,6 +77,7 @@ def start_module():
             elif option == "5":
                 lowest_price = get_lowest_price_item_id(table)
                 ui.print_result(lowest_price, "The lowest price games ID is: ")
+                common.go_back_in_menu()
 
             elif option == "6":
                 dates = ui.get_inputs(["Month from", "Day from", "Year from", "Month to", "Day to", "Year to"], "Please enter the dates: ")
@@ -86,6 +88,7 @@ def start_module():
                 day_to = dates[4]
                 year_to = dates[5]
                 ui.print_result(get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to), ["ID", "TITLE", "PRICE", "MONTH", "DAY", "YEAR"])
+                common.go_back_in_menu()
                 
             elif option == "0":
                 break

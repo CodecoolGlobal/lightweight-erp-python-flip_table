@@ -49,6 +49,7 @@ def start_module():
         try:
             if option == "1":
                 show_table(table)
+                common.go_back_in_menu()
 
             elif option == "2":
                 table = add(table)
@@ -72,9 +73,11 @@ def start_module():
 
             elif option == "5":
                 ui.print_result(get_available_items(table), "The available items are: ")
+                common.go_back_in_menu()
             
             elif option == "6":
                 ui.print_result(get_average_durability_by_manufacturers(table), ["MANUFACTURER", "AVG. DURABILITY"])
+                common.go_back_in_menu()
 
             elif option == "0":
                 break

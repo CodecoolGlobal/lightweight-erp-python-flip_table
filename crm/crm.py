@@ -45,6 +45,7 @@ def start_module():
         try:
             if option == "1":
                 show_table(table)
+                common.go_back_in_menu()
 
             elif option == "2":
                 table = add(table)
@@ -68,10 +69,11 @@ def start_module():
 
             elif option == "5":
                 ui.print_result(get_longest_name_id(table), "\nThe ID of the longest name is: ")
+                common.go_back_in_menu()
             
             elif option == "6":
                 ui.print_result(get_subscribed_emails(table), "")
-                #get_subscribed_emails(table)
+                common.go_back_in_menu()
             elif option == "0":
                 break
 

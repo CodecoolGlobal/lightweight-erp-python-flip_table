@@ -3,7 +3,7 @@ implement commonly used functions here
 """
 
 import random
-
+import ui
 
 def random_two_number():
     number = ""
@@ -57,3 +57,19 @@ def alph_sorted_names_reversed(a_list):
                 a_list[index] = a_list[index + 1]
                 a_list[index + 1] = placeholder
     return a_list
+
+def go_back_in_menu():
+
+    while True:
+        print("")
+        go_back_input = ui.get_inputs(
+        ["Enter '0' to go back: "],
+        ""
+        )
+        try:
+            if go_back_input == "0":
+                break
+            else:
+                raise KeyError("There is no such option")
+        except KeyError as err:
+            ui.print_error_message(str(err))

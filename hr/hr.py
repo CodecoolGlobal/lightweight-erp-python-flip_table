@@ -45,8 +45,9 @@ def start_module():
         )
 
         try:
-            if option == "1":           #Print the table
+            if option == "1":
                 show_table(table)
+                common.go_back_in_menu()
 
             elif option == "2":
                 table = add(table)
@@ -71,10 +72,12 @@ def start_module():
             elif option == "5":
                 oldest_people = get_oldest_person(table)
                 ui.print_result(oldest_people, "The oldest people are: ")
+                common.go_back_in_menu()
 
             elif option == "6":
                 closes_person_avg = get_persons_closest_to_average(table)
                 ui.print_result(closes_person_avg, "The people born closest to the average are: ")
+                common.go_back_in_menu()
 
             elif option == "0":
                 break

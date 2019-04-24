@@ -46,7 +46,8 @@ def start_module():
 
         try:
             if option == "1":           #Print the table
-                show_table(table) 
+                show_table(table)
+                common.go_back_in_menu()
 
             elif option == "2":         #Adds a new item to the table, updates the file
                 table = add(table) 
@@ -69,13 +70,15 @@ def start_module():
 
             elif option == "5":         #Checks the highest profit year
                 which_year_max(table)
-                
+                common.go_back_in_menu()
+
             elif option == "6":         #Avg per item in year
                 which_year = ui.get_inputs(
                     ["Please enter a year"],
                     ""
                 )
                 ui.print_result(avg_amount(table, which_year), "The average amount by given year is: ")
+                common.go_back_in_menu()
 
             elif option == "0":
                 break

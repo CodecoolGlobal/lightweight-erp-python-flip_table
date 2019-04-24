@@ -1,5 +1,5 @@
 """ User Interface (UI) module """
-
+import common
 
 def print_table(table, title_list):
     """
@@ -22,8 +22,6 @@ def print_table(table, title_list):
         None: This function doesn't return anything it only prints to console.
     """
 
-    # your goes code
-
     print("\x1b[2J\x1b[H",end="")
     table.insert(0, title_list)
     max_length_of_titles = row_max_length(table)
@@ -32,22 +30,6 @@ def print_table(table, title_list):
             print(table_row[i].center(max_length_of_titles[i]+2,' '),end="|")
         print("\n")  
     del table[0]
-    print("")
-
-    while True:
-        go_back_input = get_inputs(
-        ["Enter '0' to go back: "],
-        ""
-        )
-        try:
-            if go_back_input == "0":
-                break
-            else:
-                raise KeyError
-        except KeyError as err:
-            print_error_message(str(err))
-
-        
 
 
 def print_result(result, label):
@@ -79,8 +61,12 @@ def print_result(result, label):
     
     elif type(result) == list:
         try:
-            print_table(result, label)
-            return None
+            #print_table(result, label)
+            #return None
+            print("")
+            print(label)
+            for elements in result:
+                print("\n" + elements)
         except IndexError:
             print("\x1b[2J\x1b[H",end="")
             print("\n", label, "\n")
@@ -91,22 +77,6 @@ def print_result(result, label):
         print(label)
         print("")
         print(result)
-
-    while True:
-        print("")
-        go_back_input = get_inputs(
-            ["Please enter '0' to go back: "],
-            ""
-        )
-        try:
-            if go_back_input == "0":
-                break
-            else:
-                raise KeyError
-        except KeyError as err:
-            print_error_message(err)
-
-
 
 def print_menu(title, list_options, exit_message):
     """
