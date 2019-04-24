@@ -8,12 +8,8 @@ Data table structure:
     * subscribed (int): Is she/he subscribed to the newsletter? 1/0 = yes/no
 """
 
-# everything you'll need is imported:
-# User interface module
 import ui
-# data manager module
 import data_manager
-# common module
 import common
 
 

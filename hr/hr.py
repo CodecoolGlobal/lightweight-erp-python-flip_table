@@ -7,12 +7,8 @@ Data table structure:
     * birth_year (number)
 """
 
-# everything you'll need is imported:
-# User interface module
 import ui
-# data manager module
 import data_manager
-# common module
 import common
 
 
@@ -175,9 +171,6 @@ def update(table, id_):
     return table
 
 
-# special functions:
-# ------------------
-
 def get_oldest_person(table):
     """
     Question: Who is the oldest person?
@@ -197,10 +190,8 @@ def get_oldest_person(table):
     for person in table:
         if person[YEAR] == oldest_birthyear:
             oldest_people.append(person[NAME])
-    
-    return oldest_people
 
-    # your code
+    return oldest_people
 
 
 def get_persons_closest_to_average(table):
@@ -232,6 +223,3 @@ def get_persons_closest_to_average(table):
             list_of_people.append(table[number][NAME])
 
     return list_of_people
-    
-
-    # your code

@@ -115,8 +115,6 @@ def show_table(table):
         table,
         ["ID", "TITLE", "PRICE", "MONTH", "DAY", "YEAR"])
 
-    # your code
-
 
 def add(table):
     """
@@ -194,8 +192,6 @@ def update(table, id_):
     return table
 
 
-# special functions:
-# ------------------
 
 def get_lowest_price_item_id(table):
     """

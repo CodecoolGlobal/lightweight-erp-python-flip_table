@@ -9,12 +9,8 @@ Data table structure:
     * durability (number): Years it can be used
 """
 
-# everything you'll need is imported:
-# User interface module
 import ui
-# data manager module
 import data_manager
-# common module
 import common
 
 
@@ -177,9 +173,6 @@ def update(table, id_):
     return table
 
 
-# special functions:
-# ------------------
-
 def get_available_items(table):
     """
     Question: Which items have not exceeded their durability yet?
@@ -201,7 +194,6 @@ def get_available_items(table):
             not_exceeded_items.append(item)
 
     return not_exceeded_items
-
 
 
 

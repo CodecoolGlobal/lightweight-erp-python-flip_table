@@ -42,22 +42,22 @@ def start_module():
         option = ui.get_inputs(["Please enter a number: "], "")
 
         try:
-            if option == "1":           #Print the table
+            if option == "1":
                 show_table(table) 
                 common.go_back_in_menu()
 
-            elif option == "2":         #Adds a new item to the table, updates the file
+            elif option == "2":
                 table = add(table) 
                 data_manager.write_table_to_file("store/games.csv", table)
 
-            elif option == "3":         #Removes from the table, updates the file
+            elif option == "3":
                 id_to_remove = ui.get_inputs(
                     ["Please enter the ID of the title you wish to remove: "], ""
                 )
                 table = remove(table, id_to_remove)
                 data_manager.write_table_to_file("store/games.csv", table)
 
-            elif option == "4":         #Updates an entry by ID
+            elif option == "4":
                 which_id = ui.get_inputs(
                     ["Please enter the ID of the title you wish to update: "],
                     ""
@@ -65,12 +65,12 @@ def start_module():
                 update(table, which_id)
                 data_manager.write_table_to_file("store/games.csv", table)
 
-            elif option == "5":         #Counts how many games are in the list by manufacturer
+            elif option == "5":
                 count_by_manufacturer = get_counts_by_manufacturers(table)
                 ui.print_result(count_by_manufacturer, ["MANUFACTURER", "GAMES"])
                 common.go_back_in_menu()
                 
-            elif option == "6":         #Counts the average stock by manufacturer
+            elif option == "6":
                 which_manuf = ui.get_inputs(
                     ["Please enter which manufacturer: "],
                     ""
@@ -82,7 +82,7 @@ def start_module():
 
                 ui.print_result(average_stock_by_manufacturer,"The avarege stock by the manufacturer is ")
                 common.go_back_in_menu()
-                
+
             elif option == "0":
                 break
 
@@ -181,8 +181,6 @@ def update(table, id_):
     return table
 
 
-# special functions:
-# ------------------
 
 def get_counts_by_manufacturers(table):
     """

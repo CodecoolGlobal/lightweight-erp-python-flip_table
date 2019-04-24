@@ -45,22 +45,22 @@ def start_module():
         option = ui.get_inputs(["Please enter a number: "], "")
 
         try:
-            if option == "1":           #Print the table
+            if option == "1":
                 show_table(table)
                 common.go_back_in_menu()
 
-            elif option == "2":         #Adds a new item to the table, updates the file
+            elif option == "2":
                 table = add(table) 
                 data_manager.write_table_to_file("accounting/items.csv", table)
 
-            elif option == "3":         #Removes from the table, updates the file
+            elif option == "3":
                 id_to_remove = ui.get_inputs(
                     ["Please enter the ID of the title you wish to remove: "], ""
                 )
                 table = remove(table, id_to_remove)
                 data_manager.write_table_to_file("accounting/items.csv", table)
 
-            elif option == "4":         #Updates an entry by ID
+            elif option == "4":
                 which_id = ui.get_inputs(
                     ["Please enter the ID of the title you wish to update: "],
                     ""
@@ -68,11 +68,11 @@ def start_module():
                 update(table, which_id)
                 data_manager.write_table_to_file("accounting/items.csv", table)
 
-            elif option == "5":         #Checks the highest profit year
+            elif option == "5":
                 which_year_max(table)
                 common.go_back_in_menu()
 
-            elif option == "6":         #Avg per item in year
+            elif option == "6":
                 which_year = ui.get_inputs(
                     ["Please enter a year"],
                     ""
@@ -101,7 +101,6 @@ def show_table(table):
         None
     """
 
-    # your code
     ui.print_table(table, ["ID", "DAY", "MONTH", "YEAR", "IN-STOCK","AMOUNT"])
 
 def add(table):
@@ -115,7 +114,6 @@ def add(table):
         list: Table with a new record
     """
 
-    # your code
     input_for_new_row = ui.get_inputs(
         ["DAY", "MONTH", "YEAR", "In-stock","AMOUNT"],
         "Please enter product details"
@@ -138,7 +136,6 @@ def remove(table, id_):
         list: Table without specified record.
     """
 
-    # your code
 
     ID = 0
 
@@ -161,7 +158,6 @@ def update(table, id_):
         list: table with updated record
     """
 
-    # your code
     new_data = ui.get_inputs(
         ["DAY", "MONTH", "YEAR", "In-stock","AMOUNT"],
         "Please enter the new data to update"
