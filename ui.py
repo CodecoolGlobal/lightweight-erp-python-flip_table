@@ -43,8 +43,6 @@ def print_result(result, label):
     Returns:
         None: This function doesn't return anything it only prints to console.
     """
-
-    # your code
     
     if type(result) == dict:
         print("\x1b[2J\x1b[H",end="")
@@ -61,8 +59,6 @@ def print_result(result, label):
     
     elif type(result) == list:
         try:
-            #print_table(result, label)
-            #return None
             print("")
             print(label)
             for elements in result:
@@ -100,16 +96,14 @@ def print_menu(title, list_options, exit_message):
     """
     
     print("\x1b[2J\x1b[H",end="")
-    max_lenght = max([len(menu_option) for menu_option in list_options])
-    main_menu_decor_lenght = int((max_lenght - len(title)) / 2)
+    max_lenght = max([len(menu_option) for menu_option in list_options]) + 4
+    main_menu_decor_lenght = int((max_lenght - len(title)))
     print("")
-    print("-"*(main_menu_decor_lenght + 1), title, "-"*(main_menu_decor_lenght + 1),"\n")
+    print("\n" + title.center(max_lenght, "-") + "\n")
     for number, option in enumerate(list_options, 1):
         print(f"({number}) {option}")
     print("")
     print("(0)",exit_message,"\n")
-    
-    # your code
 
 
 def get_inputs(list_labels, title):
@@ -155,9 +149,7 @@ def print_error_message(message):
         None: This function doesn't return anything it only prints to console.
     """
     print(message)
-    # your code
 
-#Counting rows max characters for dynamic table printing
 
 def row_max_length(table):
     max_world_len = []
