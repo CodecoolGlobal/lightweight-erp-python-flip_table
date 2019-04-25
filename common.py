@@ -91,3 +91,15 @@ def confirm_option():
                 raise KeyError("There is no such option")
         except KeyError as err:
             ui.print_error_message(str(err))
+
+def check_id_in_table(table, id_to_check):
+    
+    ID_INDEX = 0
+
+    for row in table:
+        if row[ID_INDEX] == id_to_check:
+            return True
+    ui.print_error_message("There is no entry by given ID")
+    go_back_in_menu()
+    
+    return False

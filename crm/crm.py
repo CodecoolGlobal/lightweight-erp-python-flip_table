@@ -52,16 +52,18 @@ def start_module():
                     ["Please enter the ID of the person you wish to remove: "],
                     ""
                 )
-                table = remove(table, id_to_remove)
-                data_manager.write_table_to_file("crm/customers.csv", table)
+                if common.check_id_in_table(table, id_to_remove):
+                    table = remove(table, id_to_remove)
+                    data_manager.write_table_to_file("crm/customers.csv", table)
 
             elif option == "4":
-                which_id = ui.get_inputs(
+                id_to_update = ui.get_inputs(
                     ["Please enter the ID of the person you wish to update: "],
                     ""
                 )
-                update(table, which_id)
-                data_manager.write_table_to_file("crm/customers.csv", table)
+                if common.check_id_in_table(table, id_to_update):
+                    update(table, id_to_update)
+                    data_manager.write_table_to_file("crm/customers.csv", table)
 
             elif option == "5":
                 ui.print_result(get_longest_name_id(table), "\nThe ID of the longest name is: ")
@@ -164,8 +166,8 @@ def update(table, id_):
 
         for person in table:
             if person[ID] == id_:
-                for label in range(len(new_data)):
-                    person[label + 1] = new_data[label]
+                for person_data_index in range(len(new_data)):
+                    person[person_data_index + 1] = new_data[person_data_index]
 
     return table
 

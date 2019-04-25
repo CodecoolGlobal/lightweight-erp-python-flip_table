@@ -54,16 +54,18 @@ def start_module():
                     ["Please enter the ID of the person you wish to remove: "],
                     ""
                     )
-                table = remove(table, id_to_remove)
-                data_manager.write_table_to_file("hr/persons.csv", table)
+                if common.check_id_in_table(table, id_to_remove):
+                    table = remove(table, id_to_remove)
+                    data_manager.write_table_to_file("hr/persons.csv", table)
 
             elif option == "4":
-                which_id = ui.get_inputs(
+                id_to_update = ui.get_inputs(
                     ["Please enter the ID of the person you wish to update: "],
                     ""
                 )
-                update(table, which_id)
-                data_manager.write_table_to_file("hr/persons.csv", table)
+                if common.check_id_in_table(table, id_to_update):
+                    update(table, id_to_update)
+                    data_manager.write_table_to_file("hr/persons.csv", table)
 
             elif option == "5":
                 oldest_people = get_oldest_person(table)

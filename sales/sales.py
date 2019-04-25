@@ -63,16 +63,18 @@ def start_module():
                     ["Please enter the ID of the game you wish to remove: "],
                     ""
                     )
-                table = remove(table, id_to_remove)
-                data_manager.write_table_to_file("sales/sales.csv", table)
+                if common.check_id_in_table(table, id_to_remove):
+                    table = remove(table, id_to_remove)
+                    data_manager.write_table_to_file("sales/sales.csv", table)
 
             elif option == "4":
-                which_id = ui.get_inputs(
+                id_to_update = ui.get_inputs(
                     ["Please enter the ID of the game you wish to update: "],
                     ""
                 )
-                update(table, which_id)
-                data_manager.write_table_to_file("sales/sales.csv", table)
+                if common.check_id_in_table(table, id_to_update):
+                    update(table, id_to_update)
+                    data_manager.write_table_to_file("sales/sales.csv", table)
 
             elif option == "5":
                 lowest_price = get_lowest_price_item_id(table)
