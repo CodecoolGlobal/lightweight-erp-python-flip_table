@@ -37,8 +37,8 @@ def start_module():
         "Add item",
         "Remove item",
         "Update item",
-        "Place Holder 1",
-        "Place Holder 2"]
+        "Most profitable year",
+        "Avg. profit / item in a given year"]
 
     while True:
         ui.print_menu("- Accounting -", options, "Back to Main menu")
@@ -71,12 +71,12 @@ def start_module():
                     data_manager.write_table_to_file("accounting/items.csv", table)
 
             elif option == "5":
-                which_year_max(table)
+                ui.print_result(which_year_max(table), "\nThe most profitable year was: ")
                 common.go_back_in_menu()
 
             elif option == "6":
                 which_year = ui.get_inputs(
-                    ["Please enter a year"],
+                    ["Please enter a year: "],
                     ""
                 )
                 ui.print_result(avg_amount(table, which_year), "The average amount by given year is: ")
