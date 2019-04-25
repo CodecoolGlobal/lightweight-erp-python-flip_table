@@ -115,7 +115,8 @@ def add(table):
     "Please enter product details: "
     )
     input_for_new_row.insert(0, common.generate_random(table))
-    table.append(input_for_new_row)
+    if common.confirm_option():
+        table.append(input_for_new_row)
 
     return table
 

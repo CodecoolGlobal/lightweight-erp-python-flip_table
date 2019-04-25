@@ -73,3 +73,21 @@ def go_back_in_menu():
                 raise KeyError("There is no such option")
         except KeyError as err:
             ui.print_error_message(str(err))
+
+def confirm_option():
+
+    while True:
+        print("")
+        confirmation_input = ui.get_inputs(
+        ["Do you want to proceed? (y/n): "],
+        ""
+        )
+        try:
+            if confirmation_input == "y":
+                return True
+            elif confirmation_input == "n":
+                return False
+            else:
+                raise KeyError("There is no such option")
+        except KeyError as err:
+            ui.print_error_message(str(err))

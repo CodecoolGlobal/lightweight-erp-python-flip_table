@@ -152,7 +152,8 @@ def print_error_message(message):
 
 
 def row_max_length(table):
+    AN_ELEMENT = 0
     max_world_len = []
-    for title in range(len(table[0])):
-        max_world_len.append(max([len(i[title]) for i in table]))
+    for title in range(len(table[AN_ELEMENT])):
+        max_world_len.append(max([len(element[title]) for element in table]))
     return max_world_len
