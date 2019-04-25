@@ -133,11 +133,13 @@ def remove(table, id_):
         list: Table without specified record.
     """
 
-    ID = 0
+    if common.confirm_option():
 
-    for item in table:
-        if item[ID] == id_:
-            table.remove(item)
+        ID = 0
+
+        for item in table:
+            if item[ID] == id_:
+                table.remove(item)
 
     return table
 
@@ -159,17 +161,14 @@ def update(table, id_):
         "Please enter the new data to update: "
     )
 
-    NAME = 0
-    MANUFACTURER = 1
-    YEAR_OF_PURHCASE = 2
-    DURABILITY = 3
+    if common.confirm_option():
 
-    ID = 0
+        ID = 0
 
-    for item in table:
-        if item[ID] == id_:
-            for label in range(len(new_data)):
-                item[label + 1] = new_data[label]
+        for item in table:
+            if item[ID] == id_:
+                for item_data_index in range(len(new_data)):
+                    item[item_data_index + 1] = new_data[item_data_index]
 
     return table
 

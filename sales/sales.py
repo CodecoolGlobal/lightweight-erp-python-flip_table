@@ -150,12 +150,12 @@ def remove(table, id_):
         list: Table without specified record.
     """
 
+    if common.confirm_option():
+        ID = 0
 
-    ID = 0
-
-    for game in table:
-        if game[ID] == id_:
-            table.remove(game)
+        for game in table:
+            if game[ID] == id_:
+                table.remove(game)
 
     return table
 
@@ -176,19 +176,15 @@ def update(table, id_):
         ["TITLE", "PRICE", "MONTH", "DAY", "YEAR"],
         "Please enter the new data to update"
     )
-    TITLE = 0
-    PRICE = 1
-    MONTH = 2
-    DAY = 3
-    YEAR = 4
 
+    if common.confirm_option():
 
-    ID = 0
+        ID = 0
 
-    for game in table:
-        if game[ID] == id_:
-            for label in range(len(new_data)):
-                game[label + 1] = new_data[label]
+        for game in table:
+            if game[ID] == id_:
+                for game_data_index in range(len(new_data)):
+                    game[game_data_index + 1] = new_data[game_data_index]
 
     return table
 

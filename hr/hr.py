@@ -134,11 +134,12 @@ def remove(table, id_):
         list: Table without specified record.
     """
 
-    ID = 0
+    if common.confirm_option():
+        ID = 0
 
-    for person in table:
-        if person[ID] == id_:
-            table.remove(person)
+        for person in table:
+            if person[ID] == id_:
+                table.remove(person)
 
     return table
 
@@ -159,15 +160,15 @@ def update(table, id_):
         ["Name", "Birth year"],
         "Please enter the new data to update"
     )
-    NAME = 0
-    BIRTH_YEAR = 1
 
-    ID = 0
+    if common.confirm_option():
 
-    for person in table:
-        if person[ID] == id_:
-            for label in range(len(new_data)):
-                person[label + 1] = new_data[label]
+        ID = 0
+
+        for person in table:
+            if person[ID] == id_:
+                for person_data_index in range(len(new_data)):
+                    person[person_data_index + 1] = new_data[person_data_index]
 
     return table
 

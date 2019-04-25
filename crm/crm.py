@@ -130,11 +130,13 @@ def remove(table, id_):
         list: Table without specified record.
     """
 
-    ID = 0
+    if common.confirm_option():
 
-    for person in table:
-        if person[ID] == id_:
-            table.remove(person)
+        ID = 0
+
+        for person in table:
+            if person[ID] == id_:
+                table.remove(person)
 
     return table
 
@@ -156,16 +158,14 @@ def update(table, id_):
         "Please enter the new data to update"
     )
 
-    NAME = 0
-    E_MAIL = 1
-    SUBSCRIBED = 2
+    if common.confirm_option():
+            
+        ID = 0
 
-    ID = 0
-
-    for person in table:
-        if person[ID] == id_:
-            for label in range(len(new_data)):
-                person[label + 1] = new_data[label]
+        for person in table:
+            if person[ID] == id_:
+                for label in range(len(new_data)):
+                    person[label + 1] = new_data[label]
 
     return table
 
